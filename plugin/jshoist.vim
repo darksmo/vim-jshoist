@@ -38,7 +38,7 @@ function! s:JsHoistGoToFunctionScope(declarationLineNumber) abort
     return 1
 endfunction
 
-function! g:JsHoistEnsureBlankLineAfterSemicolon() abort
+function! s:JsHoistEnsureBlankLineAfterSemicolon() abort
     let l:line = line(".")
     normal! ^
     call search(";")
@@ -59,7 +59,7 @@ function! s:JsHoistAppendDeclarationInScope(variableName, lineBelowFunction) abo
     if a:lineBelowFunction !~ "var"
         execute "normal! $ovar " . a:variableName . ";"
         normal! >>
-        call g:JsHoistEnsureBlankLineAfterSemicolon()
+        call s:JsHoistEnsureBlankLineAfterSemicolon()
         return 1
     endif
 
@@ -71,7 +71,7 @@ function! s:JsHoistAppendDeclarationInScope(variableName, lineBelowFunction) abo
         normal! ^/var<cr>
         execute "normal! wi" . a:variableName . ",\<cr>"
         normal! >>
-        call g:JsHoistEnsureBlankLineAfterSemicolon()
+        call s:JsHoistEnsureBlankLineAfterSemicolon()
         return 1
     endif
 
@@ -83,7 +83,7 @@ function! s:JsHoistAppendDeclarationInScope(variableName, lineBelowFunction) abo
         normal! ^/var<cr>
         execute "normal! wi" . a:variableName . ",\<cr>"
         normal! >>
-        call g:JsHoistEnsureBlankLineAfterSemicolon()
+        call s:JsHoistEnsureBlankLineAfterSemicolon()
         return 1
     endif
 
