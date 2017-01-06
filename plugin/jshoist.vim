@@ -2,10 +2,10 @@
 " Maintainer:   Savio Dimatteo <http://savio.dimatteo.it/>
 " Version:      0.1
 
-" if exists("g:loaded_jshoist")
-"     finish
-" endif
-" let g:loaded_jshoist = 1
+if exists("g:loaded_jshoist")
+    finish
+endif
+let g:loaded_jshoist = 1
 
 function! s:JsHoistGoToFunctionScope(declarationLineNumber) abort
     " go to the current function scope
