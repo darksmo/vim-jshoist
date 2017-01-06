@@ -1,0 +1,30 @@
+*jshoist.txt*  Move declaration of Javascript variables at the function scope
+
+Author:  Savio Dimatteo <http://savio.dimatteo.it/>
+License: Same terms as Vim itself (see |license|)
+
+INTRODUCTION                                    *jshoist*
+
+Provides commands to hoist a 'var' declaration to the closest function scope
+as per Javascript best practices.
+
+COMMANDS                                        *jshoist-commands*
+
+These commands are local to the buffers in which they work (generally, buffers
+that are part of Git repositories).
+
+                                                *jshoist-:JsHoist*
+:JsHoist                This command must be issued while the cursor is
+                        positioned on a line where a declaration like
+                        var <name> = <value>; is present. It causes the
+                        assignment to stay where it is, and the var
+                        declaration to be written right below the closest
+                        function scope that includes the assignment.
+
+ABOUT                                           *jshoist-about*
+
+Grab the latest version or report a bug on GitHub:
+
+http://github.com/darksmo/vim-jshoist
+
+ vim:tw=78:et:ft=help:norl:
