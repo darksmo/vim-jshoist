@@ -102,7 +102,7 @@ endfunction
 function! s:JsHoist() abort
     let l:originalLineContent = getline(".")
     let l:originalLineNumber = line(".")
-    let l:varDeclarationPattern = "\s*var.*\=.*;\s*$"
+    let l:varDeclarationPattern = "\s*var.*\=.*"
 
     " check precondition (only oneline statements for now)
     if l:originalLineContent !~ l:varDeclarationPattern
