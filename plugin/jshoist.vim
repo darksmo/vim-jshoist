@@ -111,7 +111,8 @@ function! s:JsHoist() abort
     endif
 
     " save current position before moving
-    normal! mx 
+    normal! mx
+    let l:view=winsaveview()
 
     call s:JsHoistMoveToFirstVarDeclation()
 
@@ -134,6 +135,7 @@ function! s:JsHoist() abort
     endif
 
     " go back where we were
+    call winrestview(l:view)
     normal! `x
 
 endfunction
