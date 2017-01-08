@@ -106,7 +106,7 @@ function! s:JsHoist() abort
 
     " check precondition (only oneline statements for now)
     if l:originalLineContent !~ l:varDeclarationPattern
-        echom "A one-line JS var assignment was not recognized"
+        echom "A var assignment was not found on this line"
         return
     endif
 
