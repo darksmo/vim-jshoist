@@ -92,15 +92,18 @@ function! s:JsHoistAppendDeclarationInScope(variableName, lineBelowFunction) abo
 endfunction
 
 function! s:JsHoist() abort
+    let l:originalLineContent = getline(".")
+    let l:originalLineNumber = line(".")
+    let l:varDeclarationPattern = "\s*var.*\=.*;\s*$"
+
     " check precondition (only oneline statements for now)
-    if getline(".") !~ "\s*var.*\=.*;\s*$"
+    if l:originalLineContent !~ l:varDeclarationPattern
         echom "A one-line JS var assignment was not recognized"
         return
     endif
 
     " save current position before moving
     normal! mx 
-    let l:declarationLineNumber = line(".")
 
     " take the name of the declared var
     call search("var", "b")
@@ -110,7 +113,7 @@ function! s:JsHoist() abort
     " delete variable name
     normal! bdw
 
-    call s:JsHoistGoToFunctionScope(l:declarationLineNumber)
+    call s:JsHoistGoToFunctionScope(l:originalLineNumber)
 
     " make sure that on the line below there is no variable declaration...
     normal! j
