@@ -91,6 +91,14 @@ function! s:JsHoistAppendDeclarationInScope(variableName, lineBelowFunction) abo
 
 endfunction
 
+function! s:JsHoistMoveToFirstVarDeclation()
+    let l:currentLineNumber = line(".")
+    if search("var", "b") !=# l:currentLineNumber
+        " no var declaration was found behind the cursor
+        call search ("var")
+    endif
+endfunction
+
 function! s:JsHoist() abort
     let l:originalLineContent = getline(".")
     let l:originalLineNumber = line(".")
@@ -105,8 +113,9 @@ function! s:JsHoist() abort
     " save current position before moving
     normal! mx 
 
+    call s:JsHoistMoveToFirstVarDeclation()
+
     " take the name of the declared var
-    call search("var", "b")
     normal! w
     let l:variableName = expand("<cWORD>")
 
